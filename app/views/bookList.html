@@ -1,0 +1,38 @@
+<div ng-controller="BookListController as booksCtrl">
+
+
+    <div>
+        <pagination ng-model="booksCtrl.pagination.currentPage"
+                    total-items="booksCtrl.pagination.totalItems"
+                    ng-change="booksCtrl.pageChanged()"
+                    max-size="booksCtrl.pageCfg.maxSize"
+                    rotate="booksCtrl.pageCfg.rotate"
+                    boundary-links="booksCtrl.pageCfg.boundaryLinks">
+        </pagination>
+    </div>
+
+    <div class="table-responsive first-clickable clear" >
+        <table class="table table-striped table-bordered media-table">
+            <thead>
+            <tr>
+                <th class="col-md-2">Title</th>
+                <th class="text-center col-md-2">ISBN</th>
+                <th class="hidden-xs text-center col-md-3">Description</th>
+                <th class="text-center col-md-2" >Authors</th>
+                <th class="text-center col-md-1" >Price</th>
+                <th class="text-center hidden-xs col-md-2" >Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="book in booksCtrl.books">
+                <td class="col-md-2">{{book.title}} <span>[{{book.year}}]</span></td>
+                <td class="col-md-2">{{book.isbn}}</td>
+                <td class="col-md-3 hidden-xs">{{book.description}}</td>
+                <td class="col-md-2">{{book.authors | authors}}</td>
+                <td class="col-md-1">{{book.price | isoCurrency: book.currency}}</td>
+                <td class="col-md-2 hidden-xs"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

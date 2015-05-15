@@ -1,0 +1,25 @@
+<div>
+
+    <h3>Available books</h3>
+
+    <br/>
+    <button ng-click="bookCtrl.addEditCredential('add', undefined)" type="button" class="btn btn-default btn-sm">
+        Create Book
+    </button>
+
+    <br/>
+    <br/>
+
+    <!--<div>-->
+        <!--<pagination total-items="20" ng-model="bookCtrl.currentPage"-->
+                    <!--max-size="10" rotate="5"-->
+                    <!--ng-change="alertLiveSearch(false)" boundary-links="pagination.boundaryLinks"></pagination>-->
+    <!--</div>-->
+
+    <div ng-include="'views/bookList.html'"></div>
+
+    <br/>
+    <br/>
+    <br/>
+
+</div>
