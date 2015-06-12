@@ -2,7 +2,7 @@
 
 
 angular.module('bookshop')
-    .controller('BookListController', ['BookService','ConfService', function (BookService, ConfService) {
+    .controller('BookListController', ['BookService','PAGINATION_CONFIG', function (BookService, PAGINATION_CONFIG) {
 
         // local function
         var getPagedBooks = function(page, size) {
@@ -15,19 +15,20 @@ angular.module('bookshop')
 
         // init controller
         var vm = this;
-
-        vm.pageCfg = ConfService.getPaginationConfig();
+        vm.pageCfg = PAGINATION_CONFIG;
         vm.pagination = {
             currentPage: 0,
             totalItems: 0
         };
-
         // load first page
-        getPagedBooks(1, this.pageCfg.itemsPerPage);
+        getPagedBooks(1, vm.pageCfg.itemsPerPage);
+
 
         // manage the pages
         vm.pageChanged = function() {
-            getPagedBooks(vm.pagination.currentPage, this.pageCfg.itemsPerPage);
+            getPagedBooks(vm.pagination.currentPage, vm.pageCfg.itemsPerPage);
         };
+
+
 
     }]);

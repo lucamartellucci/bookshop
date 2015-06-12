@@ -1,27 +1,26 @@
  'use strict';
 
- angular.module('bookshop').factory( 'BookResource', ['$resource',
+ angular.module('bookshop').factory( 'BookResource', ['$resource', 'API_CONFIG',
 
-        function ( $resource ) {
-            var prefix = 'http://127.0.0.1:8080/api';
+        function ( $resource, API_CONFIG ) {
             return {
-                list: $resource( prefix + '/books', {}, {
+                list: $resource( API_CONFIG.url + '/books', {}, {
                     query: {method: 'GET', params: {}, isArray: false}
                 } )
             };
         }] );
 
 
- angular.module('bookshop').service('BookService', ['$http',
+ angular.module('bookshop').service('BookService', ['$http', 'API_CONFIG',
 
-        function ($http) {
+        function ($http, API_CONFIG) {
 
             var pagedBooks = {};
 
             this.getPagedBooks = function(page, size) {
 
                 return  $http({
-                    url: 'http://127.0.0.1:8080/api/books',
+                    url: API_CONFIG.url + '/books',
                     method: 'GET',
                     params: {page:page, size: size}
                 }).success(function(data) {
