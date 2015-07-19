@@ -1,22 +1,59 @@
 <div>
 
-    <h3>Available books</h3>
+    <h3>Books</h3>
 
     <br/>
     <button ng-click="bookCtrl.addEditCredential('add', undefined)" type="button" class="btn btn-default btn-sm">
-        Create Book
+        Add Book
     </button>
 
     <br/>
     <br/>
 
-    <!--<div>-->
-        <!--<pagination total-items="20" ng-model="bookCtrl.currentPage"-->
-                    <!--max-size="10" rotate="5"-->
-                    <!--ng-change="alertLiveSearch(false)" boundary-links="pagination.boundaryLinks"></pagination>-->
-    <!--</div>-->
+    <div >
+        <div class="text-right">
+            <pagination ng-model="bookCtrl.pagination.currentPage"
+                        total-items="bookCtrl.pagination.totalItems"
+                        ng-change="bookCtrl.pageChanged()"
+                        max-size="bookCtrl.pageCfg.maxSize"
+                        rotate="bookCtrl.pageCfg.rotate"
+                        boundary-links="bookCtrl.pageCfg.boundaryLinks">
+            </pagination>
+        </div>
 
-    <div ng-include="'views/bookList.html'"></div>
+        <div class="table-responsive first-clickable clear" >
+            <table class="table table-striped table-bordered media-table">
+                <thead>
+                <tr>
+                    <th class="col-md-2">Title</th>
+                    <th class="text-center hidden-xs col-md-1">Year</th>
+                    <th class="text-center hidden-xs col-md-3" >Authors</th>
+                    <th class="text-center col-md-1" >Price</th>
+                    <th class="text-center col-md-2" >Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="book in bookCtrl.books">
+                    <td click-link="/books/{{book.id}}" class="col-md-2"><strong class="text-info">{{book.title}}</strong></td>
+                    <td class="col-md-1 hidden-xs">{{book.year}}</td>
+                    <td class="col-md-3 hidden-xs">{{book.authors | authors}}</td>
+                    <td class="col-md-1">{{book.price | isoCurrency: book.currency}}</td>
+                    <td class="col-md-2"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-right">
+            <pagination ng-model="bookCtrl.pagination.currentPage"
+                        total-items="bookCtrl.pagination.totalItems"
+                        ng-change="bookCtrl.pageChanged()"
+                        max-size="bookCtrl.pageCfg.maxSize"
+                        rotate="bookCtrl.pageCfg.rotate"
+                        boundary-links="bookCtrl.pageCfg.boundaryLinks">
+            </pagination>
+        </div>
+    </div>
 
     <br/>
     <br/>

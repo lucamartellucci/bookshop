@@ -9,7 +9,7 @@ angular
     'ngSanitize',
     'ui.bootstrap'
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -20,12 +20,33 @@ angular
         controller: 'AboutCtrl'
       })
       .when('/books', {
-        templateUrl: 'views/books.html'
+        templateUrl: 'views/books.html',
+        controller: 'BookController',
+        controllerAs:'bookCtrl',
+        resolve: {
+          'action': function () {
+            return {
+              execute: 'LIST-BOOKS'
+            };
+          }
+        }
+      })
+      .when('/books/:id', {
+        templateUrl: 'views/book.html',
+        controller: 'BookController',
+        controllerAs:'bookCtrl',
+        resolve: {
+          'action': function () {
+            return {
+              execute: 'SHOW-BOOK'
+            };
+          }
+        }
       })
       .otherwise({
         redirectTo: '/'
       });
-  })
+  }])
   .config(['$httpProvider',function($httpProvider){
       $httpProvider.defaults.useXDomain=true;
       delete $httpProvider.defaults.headers.common['X-Requested-With'];

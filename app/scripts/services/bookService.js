@@ -6,7 +6,10 @@
             return {
                 list: $resource( API_CONFIG.url + '/books', {}, {
                     query: {method: 'GET', params: {}, isArray: false}
-                } )
+                } ),
+                detail: $resource(API_CONFIG.url + '/books/:id', {}, {
+                    query: {method: 'GET', params: {}, isArray: false}
+                })
             };
         }] );
 
@@ -16,6 +19,8 @@
         function ($http, API_CONFIG) {
 
             var pagedBooks = {};
+
+            var book = {};
 
             this.getPagedBooks = function(page, size) {
 
@@ -31,4 +36,16 @@
                 });
 
             };
+
+            this.getBookDetail = function(id) {
+                return $http({
+                    url: API_CONFIG.url + '/books/' + id,
+                    method: 'GET'
+                }).success(function(data) {
+                    book = data;
+                }).error(function(){
+                    //TODO
+                    console.log('Error getting book detail');
+                });
+            }
         }]);
