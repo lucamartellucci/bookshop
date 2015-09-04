@@ -21,6 +21,8 @@ angular.module('bookshop')
                 });
         };
 
+
+        // attaching functions and objects to the visual model (controller scope)
         var vm = this;
         vm.pagination = {
             currentPage: 0,
@@ -32,20 +34,23 @@ angular.module('bookshop')
             getPagedBooks(vm.pagination.currentPage, PAGINATION_CONFIG.itemsPerPage);
         };
 
-        vm.addEditCredential = function(action, id) {
+        vm.addEditBook = function(action, id) {
             console.log('Add edit book', action, id);
-        }
+        };
+
+        vm.init = function(todo){
+            console.log('executing the bookcontroller with action',todo);
+            switch(todo) {
+                case 'LIST-BOOKS':
+                    getPagedBooks(1, PAGINATION_CONFIG.itemsPerPage);
+                    break;
+                case 'SHOW-BOOK':
+                    getBookDetail($routeParams.id);
+                    break;
+            }
+        };
 
         // init controller
-        switch(action.execute) {
-            case 'LIST-BOOKS':
-                getPagedBooks(1, PAGINATION_CONFIG.itemsPerPage);    
-                break;
-            case 'SHOW-BOOK':
-                getBookDetail($routeParams.id);
-                break;
-        }
-
-
+        vm.init(action.execute);
 
     }]);
