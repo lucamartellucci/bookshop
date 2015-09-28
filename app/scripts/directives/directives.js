@@ -1,3 +1,4 @@
+'use strict';
 
 angular.module( 'bookshop' )
     .directive( 'clickLink', ['$location', function ( $location ) {
@@ -26,12 +27,12 @@ angular.module( 'bookshop' )
                 scope.$apply( function () {
                     var queryParams = getQueryParams( attrs.clickLink );
                     var url = attrs.clickLink.split( '?' )[0];
-                    if (url.indexOf('/') != 0){
+                    if (url.indexOf('/') !== 0){
                         // url is relative
-                        url=$location.path()+ "/"+url;
+                        url=$location.path()+ '/'+url;
                     }
                     $location.search( queryParams ).path( url );
                 } );
             } );
-        }}
-    }] )
+        }};
+    }] );

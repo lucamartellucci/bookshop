@@ -47,5 +47,5 @@
                     //TODO
                     console.log('Error getting book detail');
                 });
-            }
+            };
         }]);

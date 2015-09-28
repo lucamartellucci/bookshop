@@ -7,7 +7,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'pascalprecht.translate'
   ])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -51,6 +52,16 @@ angular
       $httpProvider.defaults.useXDomain=true;
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
   }])
+  .config(['$translateProvider', function ($translateProvider) {
+        $translateProvider.useStaticFilesLoader( {
+            prefix: 'http://127.0.0.1:8080/api/i18n/messages/',
+            suffix: ''
+        } );
+        $translateProvider.useSanitizeValueStrategy('escaped');
+
+        $translateProvider.preferredLanguage( 'en' );
+        $translateProvider.fallbackLanguage( 'en' );
+   }])
   .constant('PAGINATION_CONFIG', {
         maxSize: 10,
         boundaryLinks: true,

@@ -9,7 +9,7 @@
 
     <br/>
     <button ng-click="bookCtrl.addToCart(bookCtrl.book.id)" type="button" class="btn btn-default btn-sm">
-        Add to Cart
+        {{'book.action.button.addtocart' | translate }}
     </button>
 
     <br/>
@@ -19,21 +19,21 @@
     <div class="table-responsive" >
         <table class="table table-striped table-bordered media-table">
             <tr>
-                <th class="text-left">Year</th>
+                <th class="text-left">{{'book.table.heading.year' | translate }}</th>
                 <td>{{bookCtrl.book.year}}</td>
             </tr>
 
             <tr>
-                <th class="text-left">Price</th>
+                <th class="text-left">{{'book.table.heading.price' | translate }}</th>
                 <!--<td>{{bookCtrl.book.price | isoCurrency: bookCtrl.book.currency}}</td>-->
                 <td>{{bookCtrl.book.price}} {{bookCtrl.book.currency}}</td>
             </tr>
             <tr>
-                <th class="text-left">Description</th>
+                <th class="text-left">{{'book.table.heading.description' | translate }}</th>
                 <td>{{bookCtrl.book.description}}</td>
             </tr>
             <tr>
-                <th class="text-left">Authors</th>
+                <th class="text-left">{{'book.table.heading.authors' | translate }}</th>
                 <td>{{bookCtrl.book.authors | authors}}</td>
 
             </tr>
