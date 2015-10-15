@@ -50,6 +50,10 @@ angular.module('bookshop')
             }
         };
 
+        vm.addNew = function() {
+
+        };
+
         // init controller
         vm.init(action.execute);
 

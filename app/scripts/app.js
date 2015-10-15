@@ -44,6 +44,11 @@ angular
           }
         }
       })
+      .when('/books/addnew', {
+        templateUrl: 'views/bookNew.html',
+        controller: 'BookController',
+        controllerAs:'bookCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
