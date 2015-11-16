@@ -18,13 +18,13 @@
 
     <div >
         <div class="text-right">
-            <pagination ng-model="bookCtrl.pagination.currentPage"
+            <uib-pagination ng-model="bookCtrl.pagination.currentPage"
                         total-items="bookCtrl.pagination.totalItems"
                         ng-change="bookCtrl.pageChanged()"
                         max-size="bookCtrl.pageCfg.maxSize"
                         rotate="bookCtrl.pageCfg.rotate"
                         boundary-links="bookCtrl.pageCfg.boundaryLinks">
-            </pagination>
+            </uib-pagination>
         </div>
 
         <div class="my-responsive-table-wrapper" >
@@ -51,13 +51,13 @@
         </div>
 
         <div class="text-right">
-            <pagination ng-model="bookCtrl.pagination.currentPage"
+            <uib-pagination ng-model="bookCtrl.pagination.currentPage"
                         total-items="bookCtrl.pagination.totalItems"
                         ng-change="bookCtrl.pageChanged()"
                         max-size="bookCtrl.pageCfg.maxSize"
                         rotate="bookCtrl.pageCfg.rotate"
                         boundary-links="bookCtrl.pageCfg.boundaryLinks">
-            </pagination>
+            </uib-pagination>
         </div>
     </div>
 

@@ -2,11 +2,26 @@
 
 
 angular.module('bookshop')
-    .controller('BookController', ['$routeParams','BookService','PAGINATION_CONFIG', 'action',
-        function ($routeParams, BookService, PAGINATION_CONFIG, action) {
+    .controller('BookController', ['$routeParams','BookService','PAGINATION_CONFIG', 'action','$location',
+        function ($routeParams, BookService, PAGINATION_CONFIG, action, $location) {
 
-        // local function
-        var getPagedBooks = function(page, size) {
+        /* jshint validthis: true */
+        var vm = this;
+
+        vm.pagination = {
+            currentPage: 0,
+            totalItems: 0
+        };
+        vm.init = init;
+        vm.addNew = addNew;
+        vm.addEditBook = addEditBook;
+        vm.pageChanged = pageChanged;
+
+        // init controller
+        vm.init(action.execute);
+
+
+        function getPagedBooks(page, size) {
             BookService.getPagedBooks( page -1, size )
                 .then(function(response){
                     vm.books = response.data.result;
@@ -14,31 +29,22 @@ angular.module('bookshop')
                 });
         };
 
-        var getBookDetail = function(id) {
+        function getBookDetail(id) {
             BookService.getBookDetail(id)
                 .then(function(response){
                     vm.book = response.data;
                 });
         };
 
-
-        // attaching functions and objects to the visual model (controller scope)
-        var vm = this;
-        vm.pagination = {
-            currentPage: 0,
-            totalItems: 0
-        };
-
-        // manage the pages
-        vm.pageChanged = function() {
+        function pageChanged() {
             getPagedBooks(vm.pagination.currentPage, PAGINATION_CONFIG.itemsPerPage);
         };
 
-        vm.addEditBook = function(action, id) {
+        function addEditBook(action, id) {
             console.log('Add edit book', action, id);
         };
 
-        vm.init = function(todo){
+        function init(todo){
             console.log('executing the bookcontroller with action',todo);
             switch(todo) {
                 case 'LIST-BOOKS':
@@ -50,11 +56,8 @@ angular.module('bookshop')
             }
         };
 
-        vm.addNew = function() {
-
+        function addNew() {
+            $location.path('/books/addnew');
         };
-
-        // init controller
-        vm.init(action.execute);
 
     }]);
