@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" ng-click="navCtrl.isCollapsed = !navCtrl.isCollapsed" >
+                    <button type="button" class="navbar-toggle collapsed" ng-click="navCtrl.toggleCollapse()" >
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -36,16 +36,16 @@
                 </div>
 
                 <!-- Removed the classic Bootstrap data-* attributes. Replaced by the angular UI directive uib-collapse, managed by a the navbarController -->
-                <div class="collapse navbar-collapse" ng-click="navCtrl.isCollapsed = !navCtrl.isCollapsed" uib-collapse="navCtrl.isCollapsed">
+                <div class="collapse navbar-collapse" ng-click="navCtrl.toggleCollapse()" uib-collapse="navCtrl.isCollapsed">
                     <ul class="nav navbar-nav">
-                        <li>
-                            <!-- The active class is managed by the angular navbarController and not by the Bootstrap's javascript plugins -->
-                            <a href="#books" class="active" ng-class="{active: navCtrl.isActive('/books')}">
+                        <!-- The active class is managed by the angular navbarController and not by the Bootstrap's javascript plugins -->
+                        <li  ng-class="{active: navCtrl.isActive('/books')}">
+                            <a href="#books">
                                 Books
                             </a>
                         </li>
-                        <li>
-                            <a href="#books" ng-class="{active: navCtrl.isActive('/videos')}">
+                        <li ng-class="{active: navCtrl.isActive('/videos')}">
+                            <a href="#videos" >
                                 Videos
                             </a>
                         </li>
