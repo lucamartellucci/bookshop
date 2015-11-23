@@ -13,7 +13,6 @@ angular.module('bookshop')
             totalItems: 0
         };
 
-        /* jshint validthis: true */
         vm.addNew = addNew;
         vm.addEditBook = addEditBook;
         vm.loadPage = loadPage;
