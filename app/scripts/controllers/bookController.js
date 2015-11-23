@@ -2,8 +2,8 @@
 
 
 angular.module('bookshop')
-    .controller('BookController', ['$routeParams','BookService','PAGINATION_CONFIG', 'action','$location',
-        function ($routeParams, BookService, PAGINATION_CONFIG, action, $location) {
+    .controller('BookController', ['$routeParams','PAGINATION_CONFIG', 'action','$location','BookDataService',
+        function ($routeParams, PAGINATION_CONFIG, action, $location, BookDataService) {
 
         /* jshint validthis: true */
         var vm = this;
@@ -12,52 +12,46 @@ angular.module('bookshop')
             currentPage: 0,
             totalItems: 0
         };
-        vm.init = init;
+
+        /* jshint validthis: true */
         vm.addNew = addNew;
         vm.addEditBook = addEditBook;
-        vm.pageChanged = pageChanged;
+        vm.loadPage = loadPage;
+        vm.getBookDetail = getBookDetail;
 
         // init controller
-        vm.init(action.execute);
+        (function(){ 
+            switch(action.execute) {
+                case 'LIST-BOOKS':
+                    vm.loadPage(1);
+                    break;
+                case 'SHOW-BOOK':
+                    vm.getBookDetail($routeParams.id);
+                    break;
+            }
+        }());
 
+        function loadPage(page) {
+            BookDataService.list.query({'page':page -1, 'size': PAGINATION_CONFIG.itemsPerPage}, function(response) {
+                vm.books = response.result;
+                vm.pagination.totalItems=response.totalItems;
+            });
+        }
 
-        function getPagedBooks(page, size) {
-            BookService.getPagedBooks( page -1, size )
-                .then(function(response){
-                    vm.books = response.data.result;
-                    vm.pagination.totalItems=response.data.totalItems;
-                });
-        };
 
         function getBookDetail(id) {
-            BookService.getBookDetail(id)
-                .then(function(response){
-                    vm.book = response.data;
-                });
-        };
+            BookDataService.detail.query({'bookId':id}, function(book) {
+                vm.book = book;
+            });
+        }
 
-        function pageChanged() {
-            getPagedBooks(vm.pagination.currentPage, PAGINATION_CONFIG.itemsPerPage);
-        };
 
         function addEditBook(action, id) {
             console.log('Add edit book', action, id);
-        };
-
-        function init(todo){
-            console.log('executing the bookcontroller with action',todo);
-            switch(todo) {
-                case 'LIST-BOOKS':
-                    getPagedBooks(1, PAGINATION_CONFIG.itemsPerPage);
-                    break;
-                case 'SHOW-BOOK':
-                    getBookDetail($routeParams.id);
-                    break;
-            }
-        };
+        }
 
         function addNew() {
             $location.path('/books/addnew');
-        };
+        }
 
     }]);
