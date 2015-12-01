@@ -31,5 +31,5 @@ angular
         itemsPerPage: 10
   })
   .constant('API_CONFIG', {
-        url: 'http://127.0.0.1:8080/api/'
+        url: 'http://127.0.0.1:8080/api'
   });

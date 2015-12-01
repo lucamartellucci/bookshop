@@ -2,27 +2,28 @@
 
 
 angular.module('bookshop')
-    .controller('BookController', ['$routeParams','PAGINATION_CONFIG', 'action','$location','BookDataService',
-        function ($routeParams, PAGINATION_CONFIG, action, $location, BookDataService) {
+    .controller('BookController', ['$routeParams','PAGINATION_CONFIG','$location','BookDataService','action',
+        function ($routeParams, PAGINATION_CONFIG, $location, BookDataService, action) {
 
         /* jshint validthis: true */
         var vm = this;
 
         vm.pagination = {
-            currentPage: 0,
+            currentPage: 1,
             totalItems: 0
         };
 
+        /*jshint latedef: true */
         vm.addNew = addNew;
         vm.addEditBook = addEditBook;
-        vm.loadPage = loadPage;
+        vm.loadCurrentPage = loadCurrentPage;
         vm.getBookDetail = getBookDetail;
 
         // init controller
         (function(){ 
             switch(action.execute) {
                 case 'LIST-BOOKS':
-                    vm.loadPage(1);
+                    vm.loadCurrentPage();
                     break;
                 case 'SHOW-BOOK':
                     vm.getBookDetail($routeParams.id);
@@ -30,8 +31,11 @@ angular.module('bookshop')
             }
         }());
 
-        function loadPage(page) {
-            BookDataService.list.query({'page':page -1, 'size': PAGINATION_CONFIG.itemsPerPage}, function(response) {
+        
+        function loadCurrentPage() {
+            BookDataService.list.query({
+                    'page':vm.pagination.currentPage -1, 
+                    'size': PAGINATION_CONFIG.itemsPerPage}, function(response) {
                 vm.books = response.result;
                 vm.pagination.totalItems=response.totalItems;
             });
