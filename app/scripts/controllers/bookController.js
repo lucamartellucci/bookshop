@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('bookshop')
+angular.module('books')
     .controller('BookController', ['$routeParams','PAGINATION_CONFIG','$location','BookDataService','action',
         function ($routeParams, PAGINATION_CONFIG, $location, BookDataService, action) {
 

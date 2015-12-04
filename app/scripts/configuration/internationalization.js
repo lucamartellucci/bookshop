@@ -10,4 +10,4 @@ angular.module('bookshop')
 
         $translateProvider.preferredLanguage( 'en' );
         $translateProvider.fallbackLanguage( 'en' );
-   	}])
+   	}]);

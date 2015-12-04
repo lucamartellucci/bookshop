@@ -1,6 +1,6 @@
  'use strict';
 
- angular.module('bookshop').factory( 'BookDataService', ['$resource', 'API_CONFIG', 'PAGINATION_CONFIG',
+ angular.module('books').factory( 'BookDataService', ['$resource', 'API_CONFIG', 'PAGINATION_CONFIG',
 
     function ( $resource, API_CONFIG, PAGINATION_CONFIG ) {
         return {
