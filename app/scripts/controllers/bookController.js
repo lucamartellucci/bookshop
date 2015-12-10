@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('books')
     .controller('BookController', ['$routeParams','PAGINATION_CONFIG','$location','BookDataService','action',
         function ($routeParams, PAGINATION_CONFIG, $location, BookDataService, action) {
@@ -13,7 +12,6 @@ angular.module('books')
             totalItems: 0
         };
 
-        /*jshint latedef: true */
         vm.addNew = addNew;
         vm.addEditBook = addEditBook;
         vm.loadCurrentPage = loadCurrentPage;
