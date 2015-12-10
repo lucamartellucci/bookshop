@@ -1,7 +1,10 @@
-# bookshop
+[![Build Status](https://travis-ci.org/lucamartellucci/bookshop.svg?branch=master)](https://travis-ci.org/lucamartellucci/bookshop)
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+BookShop
+=============
+
+A simple SPA build with AngularJS
+
 
 ## Build & development
 
