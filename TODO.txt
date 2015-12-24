@@ -1,0 +1,8 @@
+Change style to the book list (remove the table)
+Add the search functionality to filter the books
+Add the image for each book
+Create book form
+In the creation form provide a service to fetch book images from internet or upload one from local device
+In the landing page show a carousel to highlight the new books
+In the landing page add a list of news (max 5)
+Update the year attribute to release date and add the attribute isNew to the book

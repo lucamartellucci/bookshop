@@ -21,11 +21,22 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  // grunt.loadNpmTasks('grunt-protractor-runner');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
     yeoman: appConfig,
+
+    // e2e testing with protractor
+    protractor: {
+      options: {
+        keepAlive: true,
+        configFile: "test-e2e/protractor.conf.js"
+      },
+      run: {}
+    },
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -416,7 +427,8 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+    'karma',
+    'protractor:run'
   ]);
 
   grunt.registerTask('build', [

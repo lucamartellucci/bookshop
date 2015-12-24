@@ -7,24 +7,53 @@
         <li class="active">Books</li>
     </ol>
 
+    <div class="container">
+        <div class="row row-content">
+            <form class="form-inline" name="searchForm" ng-submit="bookCtrl.search()" novalidate>
+                <div class="col-xs-12 col-sm-6">
+                    <input type="text" class="form-control" id="filter" name="filter" placeholder="Enter a search keyword" required>
+                </div>
+                <div class="col-xs-12 col-sm-3">
+                    <button type="submit" class="btn btn-primary btn-block">Search</button>
+                </div>
+            </form>
+        </div>
 
-    <br/>
-    <button ng-click="bookCtrl.addNew()" type="button" class="btn btn-default btn-sm">
-        Add Book
-    </button>
+        <div class="row row-content">
+            <div class="col-xs-12">
+                <div >
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="book in bookCtrl.books">
+                            <div class="media-left media-middle">
+                                <a href="#">
+                                <img class="media-object img-thumbnail"
+                                 ng-src={{book.image}} alt="Book Image">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h2 class="media-heading">{{book.title}}
+                                 <span class="label label-danger" ng-show="false">new</span>
+                                 <span class="badge">{{book.price | isoCurrency: book.currency}}</span></h2>
+                                <p>by <span class="strong">{{book.authors | authors}}</span></p>
+                                <p>year <span class="strong">{{book.year}}</span></p>
+                                <p>{{book.resume}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    <br/>
-    <br/>
-
-    <div >
-        <div class="text-right">
-            <uib-pagination ng-model="bookCtrl.pagination.currentPage"
-                        total-items="bookCtrl.pagination.totalItems"
-                        ng-change="bookCtrl.loadCurrentPage()"
-                        max-size="bookCtrl.pageCfg.maxSize"
-                        rotate="bookCtrl.pageCfg.rotate"
-                        boundary-links="bookCtrl.pageCfg.boundaryLinks">
-            </uib-pagination>
+        <div class="row row-content">
+            <div class="col-sm-12">
+                <uib-pagination ng-model="bookCtrl.pagination.currentPage"
+                            total-items="bookCtrl.pagination.totalItems"
+                            ng-change="bookCtrl.loadCurrentPage()"
+                            max-size="bookCtrl.pageCfg.maxSize"
+                            rotate="bookCtrl.pageCfg.rotate"
+                            boundary-links="bookCtrl.pageCfg.boundaryLinks">
+                </uib-pagination>
+            </div>
         </div>
 
         <div class="my-responsive-table-wrapper" >
@@ -50,19 +79,19 @@
             </table>
         </div>
 
-        <div class="text-right">
-            <uib-pagination ng-model="bookCtrl.pagination.currentPage"
-                        total-items="bookCtrl.pagination.totalItems"
-                        ng-change="bookCtrl.loadCurrentPage()"
-                        max-size="bookCtrl.pageCfg.maxSize"
-                        rotate="bookCtrl.pageCfg.rotate"
-                        boundary-links="bookCtrl.pageCfg.boundaryLinks">
-            </uib-pagination>
+        <div class="row row-content">
+            <div class="col-sm-12">
+                <uib-pagination ng-model="bookCtrl.pagination.currentPage"
+                            total-items="bookCtrl.pagination.totalItems"
+                            ng-change="bookCtrl.loadCurrentPage()"
+                            max-size="bookCtrl.pageCfg.maxSize"
+                            rotate="bookCtrl.pageCfg.rotate"
+                            boundary-links="bookCtrl.pageCfg.boundaryLinks">
+                </uib-pagination>
+            </div>
         </div>
     </div>
 
-    <br/>
-    <br/>
-    <br/>
+    </div>
 
 </div>
